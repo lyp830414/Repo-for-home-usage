@@ -1,17 +1,13 @@
-# coding:utf-8
+#coding:utf-8
 import os, sys, shutil
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 filea = list()
 max_num = 0
 start_num = 0
 
-max_num_list = [x for x in ' '.join(os.listdir('C:\qycache\Offline')).split() if x.isdigit()]
-if max_num_list:
-    max_num = int(max(max_num_list))
+max_num = int(max([x for x in ' '.join(os.listdir(u'D:\\tests')).split() if x.isdigit()]))
 
-movie_name = os.listdir('C:\qycache\Offline')
+movie_name = os.listdir(u'D:\\tests')
 
 singers = dict.fromkeys([u'邓丽君', u'陈瑞', u'韦唯', u'降央卓玛', \
                          u'刀郎', u'李谷一', u'卓依婷', u'周华健', \
@@ -38,19 +34,20 @@ start_num = max_num + 1
 print start_num
 
 for song in movie_name:
-    #print song.decode('GBK')
+    print song
     str_val = song.split()
     str_len = len(str_val)
 
-    path = 'C:\qycache\Offline' + song
+    path = 'D:\\tests' + song
 
     if os.path.isdir(path):
-        shuitl.copy(path2, 'C:\qycache\Offline')
+        shuitl.copy(path2, 'D:\\tests')
     else:
         for key in singers:
 
-            if key in song.decode("GBK"):
-                singers[key].append(song.decode("GBK"))
+            if key in song:#.decode("GBK"):
+                #singers[key].append(song.decode("GBK"))
+                singers[key].append(song)
 
     if str_len > 1:
         num, name = str_val[0:2]
@@ -60,16 +57,16 @@ for song in movie_name:
             name, rest = song.split('-')[0:2]
             new_numeric_name = str(start_num) + ' ' + song
             start_num += 1
-            os.rename('C:\qycache\Offline\\' + song,
-                      'C:\qycache\Offline\\' + new_numeric_name)
-            print 'new name is ', 'C:\qycache\Offline\\' + new_numeric_name.decode('GBK')
+            os.rename('D:\\tests\\' + song,
+                      'D:\\tests\\' + new_numeric_name)
+            print 'new name is ', 'D:\\tests\\' + new_numeric_name
         else:
             print 'Cannot handle the song:', song
     else:
         new_numeric_name = str(start_num) + ' ' + song
         start_num += 1
-        os.rename('C:\qycache\Offline\\' + song,
-                  'C:\qycache\Offline\\' + new_numeric_name)
+        os.rename('D:\\tests\\' + song,
+                  'D:\\tests\\' + new_numeric_name)
 
 for key in singers:
     if singers.get(key, False) and len(singers.get(key)) > 0:
