@@ -4,10 +4,12 @@ import os, sys, shutil
 filea = list()
 max_num = 0
 start_num = 0
+dir_list = os.listdir(u'D:\\tests')
+max_num_list = [x for x in ' '.join(dir_list).split() if x.isdigit()]
+if max_num_list:
+    max_num = int(max(max_num_list))
 
-max_num = int(max([x for x in ' '.join(os.listdir(u'D:\\tests')).split() if x.isdigit()]))
-
-movie_name = os.listdir(u'D:\\tests')
+movie_name = dir_list
 
 singers = dict.fromkeys([u'邓丽君', u'陈瑞', u'韦唯', u'降央卓玛', \
                          u'刀郎', u'李谷一', u'卓依婷', u'周华健', \
